@@ -1,7 +1,14 @@
 import BlogPost from "@/components/BlogPost";
 import AuthorCard from "@/components/AuthorCard";
 import RecentPosts from "@/components/RecentPosts";
-import { getPosts, PostBriefDto } from "@/lib/api/blogApi";
+import { getPosts, getPostByUrl, PostBriefDto } from "@/lib/api/blogApi";
+
+// Extended post type with optional content fields
+type PostWithContent = PostBriefDto & {
+  htmlContent?: string;
+  markdownContent?: string;
+  detailLoaded: boolean;
+};
 
 export default async function Home() {
   // Fetch posts from the API with limit=10 (minimum required by API)
@@ -19,18 +26,62 @@ export default async function Home() {
 
   console.log("Posts for display:", JSON.stringify(posts, null, 2));
 
+  // Fetch detailed content for each post
+  const postsWithContent: PostWithContent[] = await Promise.all(
+    posts.slice(0, 6).map(async (post) => {
+      try {
+        const detailResponse = await getPostByUrl(post.url);
+        console.log(
+          `Detail response for ${post.url}:`,
+          JSON.stringify(detailResponse, null, 2)
+        );
+
+        if (detailResponse.success && detailResponse.result) {
+          const detail = detailResponse.result;
+
+          // Use the same rendering approach as the detail page
+          if (detail.html) {
+            // For HTML content, create a preview
+            const summary =
+              detail.html.substring(0, 600) +
+              (detail.html.length > 600 ? "..." : "");
+            return {
+              ...post,
+              htmlContent: summary,
+              detailLoaded: true,
+            };
+          } else if (detail.markdown) {
+            // For Markdown content, create a preview
+            const summary =
+              detail.markdown.substring(0, 600) +
+              (detail.markdown.length > 600 ? "..." : "");
+            return {
+              ...post,
+              markdownContent: summary,
+              detailLoaded: true,
+            };
+          }
+        }
+      } catch (error) {
+        console.error(`Error fetching detail for post ${post.url}:`, error);
+      }
+      return { ...post, detailLoaded: false };
+    })
+  );
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Main content area (2/3 width on large screens) */}
       <div className="lg:col-span-2">
-        {posts && posts.length > 0 ? (
-          posts.map((post) => (
+        {postsWithContent && postsWithContent.length > 0 ? (
+          postsWithContent.map((post) => (
             <BlogPost
               key={post.url}
               title={post.title || "Untitled Post"}
               date={post.createdAt || new Date().toISOString()}
               author="Gerald Barré"
-              content={`This is a summary of the post "${post.title}". Click [read more] to view the full content.`}
+              htmlContent={post.htmlContent}
+              content={post.markdownContent}
               slug={post.url}
             />
           ))

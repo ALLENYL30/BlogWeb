@@ -3,6 +3,8 @@ import RecentPosts from "@/components/RecentPosts";
 import Link from "next/link";
 import { getPostByUrl } from "@/lib/api/blogApi";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type BlogPostParams = {
   params: {
@@ -34,10 +36,18 @@ export default async function BlogPostPage({ params }: BlogPostParams) {
             <span>{post.author}</span>
           </div>
 
-          <div
-            className="prose max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.html || post.markdown }}
-          />
+          {post.html ? (
+            <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
+          ) : (
+            <div className="prose max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.markdown}
+              </ReactMarkdown>
+            </div>
+          )}
 
           {post.category && (
             <div className="mt-6 pt-4 border-t">

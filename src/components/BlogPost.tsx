@@ -1,18 +1,35 @@
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
+/**
+ * Props for the BlogPost component
+ * @property {string} title - The title of the blog post
+ * @property {string} date - The date the post was created
+ * @property {string} author - The author of the post
+ * @property {string} [content] - Optional Markdown content for the post
+ * @property {string} [htmlContent] - Optional HTML content for the post
+ * @property {string} slug - The URL slug for the post
+ */
 type BlogPostProps = {
   title: string;
   date: string;
   author: string;
-  content?: string;
+  content?: string; // Markdown content
+  htmlContent?: string; // HTML content
   slug: string;
 };
 
+/**
+ * BlogPost component that renders a blog post with either HTML or Markdown content
+ * Supports both full post views and preview/summary views
+ */
 const BlogPost = ({
   title,
   date,
   author,
   content = "",
+  htmlContent,
   slug,
 }: BlogPostProps) => {
   // Format date if needed
@@ -30,7 +47,16 @@ const BlogPost = ({
         <span className="mx-2">•</span>
         <span>{author}</span>
       </div>
-      {content && <div className="mb-4 leading-relaxed">{content}</div>}
+      {htmlContent ? (
+        <div
+          className="mb-4 leading-relaxed post-summary prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
+        />
+      ) : content ? (
+        <div className="mb-4 leading-relaxed prose max-w-none">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        </div>
+      ) : null}
       <Link
         href={`/blog/${slug}`}
         className="text-gray-700 hover:text-black hover:underline"
