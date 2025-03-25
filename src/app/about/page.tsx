@@ -13,20 +13,18 @@ export default async function AboutPage() {
   const content = await readMarkdownFile("about-me", "about");
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main content */}
-        <div className="lg:col-span-2">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <MarkdownRenderer content={content} />
-          </div>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
+      {/* Main content */}
+      <div className="lg:col-span-2">
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <MarkdownRenderer content={content} />
         </div>
-
-        {/* Sidebar */}
-        <aside>
-          <Sidebar type="about" />
-        </aside>
       </div>
+
+      {/* Sidebar */}
+      <aside>
+        <Sidebar type="about" />
+      </aside>
     </div>
   );
 }

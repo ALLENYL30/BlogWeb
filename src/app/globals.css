@@ -43,6 +43,8 @@ body {
 /* Markdown content styling */
 .prose {
   line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .prose h1 {
@@ -107,6 +109,30 @@ body {
   border: 0;
   border-top: 1px solid #eaeaea;
   margin: 2rem 0;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-radius: 0.375rem;
+  margin: 1.5rem 0;
+}
+
+.prose code {
+  background-color: #f1f1f1;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-geist-mono);
+  font-size: 0.875em;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  word-break: break-all;
+  white-space: pre-wrap;
 }
 
 /* Project specific styles */

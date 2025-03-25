@@ -9,7 +9,7 @@ export default async function ArchivesPage() {
     response.success && response.result?.item ? response.result.item : [];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
       {/* Main content area (2/3 width on large screens) */}
       <div className="lg:col-span-2">
         <h1 className="text-3xl font-bold mb-8">Archives</h1>

@@ -13,20 +13,18 @@ export default async function ProjectsPage() {
   const content = await readMarkdownFile("projects", "projects");
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main content */}
-        <div className="lg:col-span-2">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <MarkdownRenderer content={content} className="projects-content" />
-          </div>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
+      {/* Main content */}
+      <div className="lg:col-span-2">
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <MarkdownRenderer content={content} className="projects-content" />
         </div>
-
-        {/* Sidebar */}
-        <aside>
-          <Sidebar type="projects" />
-        </aside>
       </div>
+
+      {/* Sidebar */}
+      <aside>
+        <Sidebar type="projects" />
+      </aside>
     </div>
   );
 }

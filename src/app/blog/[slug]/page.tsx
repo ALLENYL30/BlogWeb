@@ -4,6 +4,7 @@ import { getPostByUrl } from "@/lib/api/blogApi";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { ComponentPropsWithoutRef } from "react";
 
 type BlogPostParams = {
   params: {
@@ -24,7 +25,7 @@ export default async function BlogPostPage({ params }: BlogPostParams) {
   const post = response.result;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
       {/* Main content area (2/3 width on large screens) */}
       <div className="lg:col-span-2">
         <article className="bg-white p-6 rounded-lg shadow-md">
@@ -52,14 +53,33 @@ export default async function BlogPostPage({ params }: BlogPostParams) {
             </div>
           </header>
 
-          <div className="prose max-w-none">
+          <div className="prose max-w-none overflow-hidden">
             {post.html ? (
               <div
                 dangerouslySetInnerHTML={{ __html: post.html }}
-                className="prose"
+                className="prose overflow-hidden"
               />
             ) : post.markdown ? (
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  pre: (props: ComponentPropsWithoutRef<"pre">) => (
+                    <pre className="overflow-auto" {...props} />
+                  ),
+                  code: ({
+                    inline,
+                    ...props
+                  }: { inline?: boolean } & ComponentPropsWithoutRef<"code">) =>
+                    inline ? (
+                      <code {...props} />
+                    ) : (
+                      <code
+                        className="break-words whitespace-pre-wrap"
+                        {...props}
+                      />
+                    ),
+                }}
+              >
                 {post.markdown}
               </ReactMarkdown>
             ) : (

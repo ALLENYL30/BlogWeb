@@ -79,7 +79,7 @@ export default async function CategoryPage({ params }: CategoryPageParams) {
   );
 
   return (
-    <div>
+    <div className="mt-4">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Category: {category}</h1>
         <Link

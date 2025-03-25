@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { ComponentPropsWithoutRef } from "react";
 
 /**
  * Props for the BlogPost component
@@ -49,12 +50,33 @@ const BlogPost = ({
       </div>
       {htmlContent ? (
         <div
-          className="mb-4 leading-relaxed post-summary prose max-w-none"
+          className="mb-4 leading-relaxed post-summary prose max-w-none overflow-hidden"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
       ) : content ? (
-        <div className="mb-4 leading-relaxed prose max-w-none">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        <div className="mb-4 leading-relaxed prose max-w-none overflow-hidden">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              pre: (props: ComponentPropsWithoutRef<"pre">) => (
+                <pre className="overflow-auto" {...props} />
+              ),
+              code: ({
+                inline,
+                ...props
+              }: { inline?: boolean } & ComponentPropsWithoutRef<"code">) =>
+                inline ? (
+                  <code {...props} />
+                ) : (
+                  <code
+                    className="break-words whitespace-pre-wrap"
+                    {...props}
+                  />
+                ),
+            }}
+          >
+            {content}
+          </ReactMarkdown>
         </div>
       ) : null}
       <Link
