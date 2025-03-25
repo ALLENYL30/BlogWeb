@@ -4,7 +4,7 @@ Here's a collection of projects I've worked on.
 
 ## Project 1: E-commerce Platform
 
-![E-commerce Platform](/images/project1.jpg)
+<div style="width:100%;height:250px;background:#3498db;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;font-size:24px;margin:1.5rem 0;border-radius:8px;">E-commerce Platform</div>
 
 A full-stack e-commerce solution built with Next.js, Node.js, and MongoDB.
 
@@ -24,7 +24,7 @@ A full-stack e-commerce solution built with Next.js, Node.js, and MongoDB.
 
 ## Project 2: Weather App
 
-![Weather App](/images/project2.jpg)
+<div style="width:100%;height:250px;background:#e74c3c;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;font-size:24px;margin:1.5rem 0;border-radius:8px;">Weather App</div>
 
 A responsive weather application that displays current conditions and forecasts.
 
@@ -44,7 +44,7 @@ A responsive weather application that displays current conditions and forecasts.
 
 ## Project 3: Task Management System
 
-![Task Manager](/images/project3.jpg)
+<div style="width:100%;height:250px;background:#2ecc71;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;font-size:24px;margin:1.5rem 0;border-radius:8px;">Task Management System</div>
 
 A collaborative task management system for teams.
 

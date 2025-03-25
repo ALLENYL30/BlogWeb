@@ -23,6 +23,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f5f5;
 }
 
 /* Post summary styling */
@@ -106,4 +107,17 @@ body {
   border: 0;
   border-top: 1px solid #eaeaea;
   margin: 2rem 0;
+}
+
+/* Project specific styles */
+.projects-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.projects-content img:hover {
+  transform: scale(1.02);
 }
