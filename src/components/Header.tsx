@@ -2,22 +2,66 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Header = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
+  const headerRef = useRef<HTMLElement>(null);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
-  // Handle scroll effect
+  // Scroll threshold with buffer to prevent flickering
+  const SCROLL_THRESHOLD = 100;
+  const SCROLL_BUFFER = 20; // Buffer zone to prevent flickering
+
+  // Handle scroll effect with initial state setup
   useEffect(() => {
+    // Initialize scroll state based on current position (prevents jerking on navigation)
+    const initialScrollPos = window.scrollY > SCROLL_THRESHOLD;
+    setScrolled(initialScrollPos);
+    lastScrollY.current = window.scrollY;
+
+    // Small delay to let initial render complete before enabling transitions
+    const timer = setTimeout(() => {
+      setInitialLoad(false);
+    }, 50);
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      // Store current scroll position
+      lastScrollY.current = window.scrollY;
+
+      // Use requestAnimationFrame to throttle updates
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          // Add buffer logic to prevent flickering when near threshold
+          if (
+            !scrolled &&
+            lastScrollY.current > SCROLL_THRESHOLD + SCROLL_BUFFER
+          ) {
+            setScrolled(true);
+          } else if (
+            scrolled &&
+            lastScrollY.current < SCROLL_THRESHOLD - SCROLL_BUFFER
+          ) {
+            setScrolled(false);
+          }
+          ticking.current = false;
+        });
+
+        ticking.current = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
+  }, [pathname, scrolled]); // Re-run when pathname changes for page navigation
 
   const isActiveLink = (path: string) => {
     return pathname === path;
@@ -27,15 +71,21 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  // Determine transition classes
+  const transitionClass = initialLoad
+    ? "transition-none"
+    : "transition-all duration-300";
+
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      ref={headerRef}
+      className={`sticky top-0 z-50 ${transitionClass} ${
         scrolled ? "shadow-xl" : ""
       }`}
     >
       {/* Main header section with animated gradient background */}
       <div
-        className={`bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 text-white transition-all duration-300 
+        className={`bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 text-white ${transitionClass}
         ${scrolled ? "py-3" : "py-8"}`}
       >
         {/* Animated pattern overlay */}
@@ -50,11 +100,11 @@ const Header = () => {
         {/* Container for site title and description */}
         <div className="container mx-auto px-4 relative z-10">
           <div
-            className={`flex flex-col items-center justify-center transition-all duration-300
+            className={`flex flex-col items-center justify-center ${transitionClass}
             ${scrolled ? "mb-0" : "mb-4"}`}
           >
             <h1
-              className={`font-bold tracking-tight text-white drop-shadow-md transition-all duration-300
+              className={`font-bold tracking-tight text-white drop-shadow-md ${transitionClass}
               ${scrolled ? "text-2xl md:text-3xl" : "text-4xl md:text-5xl"}`}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-indigo-200">
@@ -63,7 +113,7 @@ const Header = () => {
             </h1>
 
             <p
-              className={`text-blue-100 max-w-2xl text-center font-light transition-all duration-300
+              className={`text-blue-100 max-w-2xl text-center font-light ${transitionClass}
               ${
                 scrolled
                   ? "text-xs md:text-sm mt-1 opacity-80"
