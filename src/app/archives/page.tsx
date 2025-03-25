@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getPosts, YearGroup } from "@/lib/api/blogApi";
-import AuthorCard from "@/components/AuthorCard";
-import RecentPosts from "@/components/RecentPosts";
+import Sidebar from "@/components/Sidebar";
 
 export default async function ArchivesPage() {
   // Fetch all posts
@@ -49,8 +48,7 @@ export default async function ArchivesPage() {
 
       {/* Sidebar (1/3 width on large screens) */}
       <aside>
-        <AuthorCard />
-        <RecentPosts />
+        <Sidebar type="archives" />
       </aside>
     </div>
   );

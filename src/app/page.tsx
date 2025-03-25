@@ -1,6 +1,5 @@
 import BlogPost from "@/components/BlogPost";
-import AuthorCard from "@/components/AuthorCard";
-import RecentPosts from "@/components/RecentPosts";
+import Sidebar from "@/components/Sidebar";
 import { getPosts, getPostByUrl, PostBriefDto } from "@/lib/api/blogApi";
 
 // Extended post type with optional content fields
@@ -102,8 +101,7 @@ export default async function Home() {
 
       {/* Sidebar (1/3 width on large screens) */}
       <aside>
-        <AuthorCard />
-        <RecentPosts />
+        <Sidebar type="home" />
       </aside>
     </div>
   );

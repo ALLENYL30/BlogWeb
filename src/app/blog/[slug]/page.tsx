@@ -1,5 +1,4 @@
-import AuthorCard from "@/components/AuthorCard";
-import RecentPosts from "@/components/RecentPosts";
+import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
 import { getPostByUrl } from "@/lib/api/blogApi";
 import { notFound } from "next/navigation";
@@ -15,61 +14,68 @@ type BlogPostParams = {
 export default async function BlogPostPage({ params }: BlogPostParams) {
   const { slug } = params;
 
-  // Fetch post from API
-  const postResponse = await getPostByUrl(slug);
+  // Fetch post details
+  const response = await getPostByUrl(slug);
 
-  // If post not found, show 404
-  if (!postResponse.success || !postResponse.result) {
-    notFound();
+  if (!response.success || !response.result) {
+    return notFound();
   }
 
-  const post = postResponse.result;
+  const post = response.result;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Main content area (2/3 width on large screens) */}
       <div className="lg:col-span-2">
-        <article>
-          <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-          <div className="flex text-gray-600 text-sm mb-6">
-            <time>{new Date(post.createdAt).toLocaleDateString("en-US")}</time>
-            <span className="mx-2">•</span>
-            <span>{post.author}</span>
-          </div>
+        <article className="bg-white p-6 rounded-lg shadow-md">
+          <header className="mb-6">
+            <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+            <div className="text-gray-600 text-sm">
+              <time dateTime={post.createdAt}>
+                {new Date(post.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+              {post.category && (
+                <>
+                  {" in "}
+                  <Link
+                    href={`/blog/category/${post.category.alias}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {post.category.name}
+                  </Link>
+                </>
+              )}
+            </div>
+          </header>
 
-          {post.html ? (
-            <div
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
-          ) : (
-            <div className="prose max-w-none">
+          <div className="prose max-w-none">
+            {post.html ? (
+              <div
+                dangerouslySetInnerHTML={{ __html: post.html }}
+                className="prose"
+              />
+            ) : post.markdown ? (
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {post.markdown}
               </ReactMarkdown>
-            </div>
-          )}
-
-          {post.category && (
-            <div className="mt-6 pt-4 border-t">
-              <span className="text-sm text-gray-600">Category: </span>
-              <Link
-                href={`/blog/category/${post.category.alias}`}
-                className="text-gray-800 hover:text-black hover:underline"
-              >
-                {post.category.name}
-              </Link>
-            </div>
-          )}
+            ) : (
+              <p>No content available for this post.</p>
+            )}
+          </div>
 
           {post.tags && post.tags.length > 0 && (
-            <div className="mt-4">
-              <span className="text-sm text-gray-600">Tags: </span>
-              <div className="flex flex-wrap gap-2 mt-1">
+            <div className="mt-8 pt-4 border-t border-gray-200">
+              <h3 className="text-sm uppercase text-gray-500 mb-2">Tags:</h3>
+              <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <Link
                     key={tag.alias}
                     href={`/blog/tag/${tag.alias}`}
-                    className="bg-gray-100 px-2 py-1 rounded text-sm hover:bg-gray-200"
+                    className="bg-gray-100 text-gray-800 px-2 py-1 text-sm rounded-md hover:bg-gray-200"
                   >
                     {tag.name}
                   </Link>
@@ -77,21 +83,12 @@ export default async function BlogPostPage({ params }: BlogPostParams) {
               </div>
             </div>
           )}
-
-          <div className="mt-8">
-            <Link
-              href="/"
-              className="text-gray-700 hover:text-black hover:underline"
-            >
-              ← Back to homepage
-            </Link>
-          </div>
         </article>
       </div>
 
+      {/* Sidebar (1/3 width on large screens) */}
       <aside>
-        <AuthorCard />
-        <RecentPosts />
+        <Sidebar type="home" />
       </aside>
     </div>
   );

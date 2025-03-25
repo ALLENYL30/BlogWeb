@@ -115,7 +115,7 @@ const Header = () => {
             </div>
 
             {/* Desktop Navigation with hover effects */}
-            <nav className="hidden md:flex flex-1 justify-center">
+            <nav className="flex flex-1 justify-center">
               <ul className="flex space-x-1">
                 <li>
                   <Link
@@ -171,57 +171,6 @@ const Header = () => {
                 </li>
               </ul>
             </nav>
-
-            {/* Search button with improved styling */}
-            <div className="flex items-center">
-              <div className="hidden md:block">
-                <button
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 
-                  text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 
-                  flex items-center shadow-md hover:shadow-lg shadow-indigo-900/20"
-                  aria-label="Search"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                  Search
-                </button>
-              </div>
-
-              {/* Mobile search icon with hover effect */}
-              <div className="md:hidden">
-                <button
-                  className="ml-4 text-white hover:text-blue-200 transition-colors p-1 rounded-full hover:bg-indigo-800/50"
-                  aria-label="Search"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Mobile Menu with animation */}
@@ -288,30 +237,6 @@ const Header = () => {
                 >
                   About
                 </Link>
-              </li>
-              {/* Search button for mobile menu */}
-              <li>
-                <button
-                  className="w-full mt-2 text-left px-4 py-2 rounded-full text-sm font-medium
-                  bg-gradient-to-r from-blue-600 to-indigo-600 text-white
-                  flex items-center shadow-md shadow-indigo-800/20"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                  Search
-                </button>
               </li>
             </ul>
           </div>

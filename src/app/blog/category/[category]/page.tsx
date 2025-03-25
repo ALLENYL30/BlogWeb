@@ -3,8 +3,7 @@ import {
   getPostByUrl,
   PostBriefDto,
 } from "@/lib/api/blogApi";
-import AuthorCard from "@/components/AuthorCard";
-import RecentPosts from "@/components/RecentPosts";
+import Sidebar from "@/components/Sidebar";
 import BlogPost from "@/components/BlogPost";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -22,6 +21,7 @@ type CategoryPageParams = {
 type PostWithContent = PostBriefDto & {
   htmlContent?: string;
   markdownContent?: string;
+  detailLoaded: boolean;
 };
 
 export default async function CategoryPage({ params }: CategoryPageParams) {
@@ -45,33 +45,36 @@ export default async function CategoryPage({ params }: CategoryPageParams) {
         if (detailResponse.success && detailResponse.result) {
           const detail = detailResponse.result;
 
-          // Process HTML content - same approach as homepage and detail page
+          // Use the same rendering approach as the detail page
           if (detail.html) {
+            // For HTML content, create a preview
             const summary =
               detail.html.substring(0, 600) +
               (detail.html.length > 600 ? "..." : "");
             return {
               ...post,
               htmlContent: summary,
+              detailLoaded: true,
             };
-          }
-          // Process Markdown content - same approach as homepage and detail page
-          else if (detail.markdown) {
+          } else if (detail.markdown) {
+            // For Markdown content, create a preview
             const summary =
               detail.markdown.substring(0, 600) +
               (detail.markdown.length > 600 ? "..." : "");
             return {
               ...post,
               markdownContent: summary,
+              detailLoaded: true,
             };
           }
         }
-
-        return post;
       } catch (error) {
-        console.error(`Error fetching detail for post ${post.url}:`, error);
-        return post;
+        console.error(
+          `Error fetching detail for post ${post.url} in category ${category}:`,
+          error
+        );
       }
+      return { ...post, detailLoaded: false };
     })
   );
 
@@ -109,8 +112,7 @@ export default async function CategoryPage({ params }: CategoryPageParams) {
         </div>
 
         <aside>
-          <AuthorCard />
-          <RecentPosts />
+          <Sidebar type="home" />
         </aside>
       </div>
     </div>

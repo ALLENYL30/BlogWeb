@@ -1,26 +1,47 @@
 import Link from "next/link";
+import Image from "next/image";
+import { getPosts, PostBriefDto, YearGroup } from "@/lib/api/blogApi";
 
 type SidebarProps = {
-  type: "about" | "projects";
+  type: "about" | "projects" | "home" | "archives";
 };
 
-const Sidebar = ({ type }: SidebarProps) => {
+const Sidebar = async ({ type }: SidebarProps) => {
+  // Fetch recent posts from the API
+  const response = await getPosts(1, 5); // Reduce to 5 posts for sidebar
+
+  // Handle the specific response structure from this API
+  let posts: PostBriefDto[] = [];
+  if (response.success && response.result?.item) {
+    // Flatten posts from all years
+    posts = response.result.item.flatMap(
+      (yearGroup: YearGroup) => yearGroup.posts || []
+    );
+  }
+
   return (
     <div className="space-y-8">
-      {/* Profile Section */}
+      {/* Author Card Section */}
       <div className="bg-white p-6 rounded-lg shadow-md">
         <div className="flex flex-col items-center">
-          {/* Avatar with initials instead of image */}
-          <div className="w-[150px] h-[150px] rounded-full bg-blue-500 flex items-center justify-center text-white text-4xl font-bold mb-4">
-            YL
+          {/* Profile Image */}
+          <div className="mb-4">
+            <Image
+              src="/author.jpg"
+              alt="Gerald Barré"
+              width={120}
+              height={120}
+              className="rounded-full mx-auto"
+              priority
+            />
           </div>
-          <h2 className="text-xl font-bold mb-2">Yuhao Liu</h2>
+          <h2 className="text-xl font-bold mb-1">GÉRALD BARRÉ</h2>
           <p className="text-gray-600 text-sm text-center mb-4">
-            Junior C# Developer passionate about .NET and web development
+            aka. meziantou
           </p>
           <div className="flex space-x-3">
             <a
-              href="https://github.com/ALLENYL30"
+              href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-black"
@@ -36,7 +57,23 @@ const Sidebar = ({ type }: SidebarProps) => {
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/zzyliu74/"
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-black"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+              </svg>
+            </a>
+            <a
+              href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-black"
@@ -64,19 +101,23 @@ const Sidebar = ({ type }: SidebarProps) => {
           <li>
             <Link
               href="/"
-              className="text-gray-700 hover:text-black hover:underline"
+              className={`${
+                type === "home" ? "font-semibold text-black" : "text-gray-700"
+              } hover:text-black hover:underline`}
             >
               Home
             </Link>
           </li>
           <li>
             <Link
-              href="/about"
+              href="/archives"
               className={`${
-                type === "about" ? "font-semibold text-black" : "text-gray-700"
+                type === "archives"
+                  ? "font-semibold text-black"
+                  : "text-gray-700"
               } hover:text-black hover:underline`}
             >
-              About Me
+              Archives
             </Link>
           </li>
           <li>
@@ -93,12 +134,37 @@ const Sidebar = ({ type }: SidebarProps) => {
           </li>
           <li>
             <Link
-              href="/blog"
-              className="text-gray-700 hover:text-black hover:underline"
+              href="/about"
+              className={`${
+                type === "about" ? "font-semibold text-black" : "text-gray-700"
+              } hover:text-black hover:underline`}
             >
-              Blog
+              About Me
             </Link>
           </li>
+        </ul>
+      </div>
+
+      {/* Recent Posts Section */}
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold mb-4 border-b pb-2">
+          Recent Posts
+        </h3>
+        <ul className="space-y-2">
+          {posts && posts.length > 0 ? (
+            posts.map((post) => (
+              <li key={post.url}>
+                <Link
+                  href={`/blog/${post.url}`}
+                  className="text-gray-700 hover:text-black hover:underline"
+                >
+                  {post.title || "Untitled Post"}
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li className="text-gray-600">No recent posts available</li>
+          )}
         </ul>
       </div>
 

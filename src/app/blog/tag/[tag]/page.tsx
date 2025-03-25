@@ -1,6 +1,5 @@
 import { getPostsByCategory } from "@/lib/api/blogApi";
-import AuthorCard from "@/components/AuthorCard";
-import RecentPosts from "@/components/RecentPosts";
+import Sidebar from "@/components/Sidebar";
 import BlogPost from "@/components/BlogPost";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -56,8 +55,7 @@ export default async function TagPage({ params }: TagPageParams) {
         </div>
 
         <aside>
-          <AuthorCard />
-          <RecentPosts />
+          <Sidebar type="home" />
         </aside>
       </div>
     </div>
