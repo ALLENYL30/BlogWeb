@@ -2,10 +2,13 @@
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "https://localhost:44380";
 
-// Configure fetch options - ignore SSL certificate validation in development
+// Configure fetch options for Next.js 15
 const fetchOptions = {
-  // Choose one caching strategy, not both
-  cache: "no-store" as RequestCache,
+  // Using next/cache strategy for fetch caching
+  next: {
+    // Revalidate content every hour
+    revalidate: 3600,
+  },
 };
 
 // For handling self-signed certificates in development

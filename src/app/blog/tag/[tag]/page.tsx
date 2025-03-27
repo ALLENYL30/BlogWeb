@@ -4,13 +4,24 @@ import BlogPost from "@/components/BlogPost";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-type TagPageParams = {
-  params: {
-    tag: string;
-  };
-};
+// Allow handling tags not in generateStaticParams
+export const dynamicParams = true;
 
-export default async function TagPage({ params }: TagPageParams) {
+// Set metadata for this page
+export async function generateMetadata({
+  params,
+}: {
+  params: { tag: string };
+}) {
+  const { tag } = params;
+
+  return {
+    title: `Posts tagged with "${tag}"`,
+    description: `Browse all articles tagged with "${tag}" on Mono BLOG`,
+  };
+}
+
+export default async function TagPage({ params }: { params: { tag: string } }) {
   const { tag } = params;
 
   // Fetch posts for the tag - we'll reuse the category API function for now

@@ -8,11 +8,8 @@ import BlogPost from "@/components/BlogPost";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-type CategoryPageParams = {
-  params: {
-    category: string;
-  };
-};
+// Allow handling categories not in generateStaticParams
+export const dynamicParams = true;
 
 /**
  * Extended post type with optional content fields
@@ -24,7 +21,25 @@ type PostWithContent = PostBriefDto & {
   detailLoaded: boolean;
 };
 
-export default async function CategoryPage({ params }: CategoryPageParams) {
+// Set metadata for this page
+export async function generateMetadata({
+  params,
+}: {
+  params: { category: string };
+}) {
+  const { category } = params;
+
+  return {
+    title: `Posts in "${category}" category`,
+    description: `Browse all articles in the "${category}" category on Mono BLOG`,
+  };
+}
+
+export default async function CategoryPage({
+  params,
+}: {
+  params: { category: string };
+}) {
   const { category } = params;
 
   // Fetch posts for the category
