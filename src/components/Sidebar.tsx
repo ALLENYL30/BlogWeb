@@ -1,23 +1,33 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getPosts, PostBriefDto, YearGroup } from "@/lib/api/blogApi";
+import { getPosts } from "@/lib/api/blogApi";
 
 type SidebarProps = {
   type: "about" | "projects" | "home" | "archives";
 };
 
 const Sidebar = async ({ type }: SidebarProps) => {
-  // Fetch recent posts from the API
-  const response = await getPosts(1, 5); // Reduce to 5 posts for sidebar
+  // Directly call the getPosts function with a limit of 10 (minimum required by API)
+  const response = await getPosts(1, 10);
+  console.log("API Response:", JSON.stringify(response, null, 2));
 
-  // Handle the specific response structure from this API
-  let posts: PostBriefDto[] = [];
-  if (response.success && response.result?.item) {
-    // Flatten posts from all years
-    posts = response.result.item.flatMap(
-      (yearGroup: YearGroup) => yearGroup.posts || []
-    );
+  // Very simple posts array with just titles
+  let posts: { title: string; url: string }[] = [];
+
+  // Handle the API response directly
+  if (response && response.success && response.result && response.result.item) {
+    posts = response.result.item
+      .flatMap((yearGroup) =>
+        yearGroup.posts.map((post) => ({
+          title: post.title || "Untitled Post",
+          url: post.url,
+        }))
+      )
+      // Take only the 5 most recent posts
+      .slice(0, 5);
   }
+
+  console.log("Posts for display:", JSON.stringify(posts, null, 2));
 
   return (
     <div className="space-y-8">
@@ -151,19 +161,19 @@ const Sidebar = async ({ type }: SidebarProps) => {
           Recent Posts
         </h3>
         <ul className="space-y-2">
-          {posts && posts.length > 0 ? (
+          {posts.length > 0 ? (
             posts.map((post) => (
               <li key={post.url}>
                 <Link
                   href={`/blog/${post.url}`}
                   className="text-gray-700 hover:text-black hover:underline"
                 >
-                  {post.title || "Untitled Post"}
+                  {post.title}
                 </Link>
               </li>
             ))
           ) : (
-            <li className="text-gray-600">No recent posts available</li>
+            <li className="text-gray-600">No posts available</li>
           )}
         </ul>
       </div>

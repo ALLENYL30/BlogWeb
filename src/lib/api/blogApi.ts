@@ -1,6 +1,6 @@
 // Base API URL - should be set in environment variables in production
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://localhost:44380";
 
 // Configure fetch options - ignore SSL certificate validation in development
 const fetchOptions = {
@@ -78,67 +78,18 @@ export interface PostsResponse {
   item: YearGroup[]; // Note: The API uses 'item', not 'items'
 }
 
-// Function to safely parse the API response based on observed structure
-function parseResponse<T>(data: unknown, defaultValue: T): BlogResponse<T> {
-  // Check if the response is null or undefined
-  if (!data) {
-    return {
-      success: false,
-      message: "No data received from API",
-      result: defaultValue,
-    };
-  }
-
-  // Check if we have a standard BlogResponse structure
-  if (
-    typeof data === "object" &&
-    data !== null &&
-    "success" in data &&
-    "result" in data
-  ) {
-    return data as BlogResponse<T>;
-  }
-
-  // If data itself is an array, it might be the result directly
-  if (Array.isArray(data)) {
-    return {
-      success: true,
-      message: "Data retrieved successfully",
-      result: data as unknown as T,
-    };
-  }
-
-  // If data has total and items properties, it might be a PagedList
-  if (
-    typeof data === "object" &&
-    data !== null &&
-    "total" in data &&
-    "items" in data
-  ) {
-    return {
-      success: true,
-      message: "Data retrieved successfully",
-      result: data as unknown as T,
-    };
-  }
-
-  // Last resort, treat the whole response as the result
-  return {
-    success: true,
-    message: "Data retrieved successfully",
-    result: data as unknown as T,
-  };
-}
-
 // Get blog posts with pagination
 export async function getPosts(page: number = 1, limit: number = 10) {
   try {
+    // Ensure minimum limit required by API is respected
+    const actualLimit = Math.max(limit, 10);
+
     console.log(
-      `Fetching posts from: ${API_BASE_URL}/api/meowv/blog/posts/${page}/${limit}`
+      `Fetching posts from: ${API_BASE_URL}/api/meowv/blog/posts/${page}/${actualLimit}`
     );
 
     const res = await fetch(
-      `${API_BASE_URL}/api/meowv/blog/posts/${page}/${limit}`,
+      `${API_BASE_URL}/api/meowv/blog/posts/${page}/${actualLimit}`,
       fetchOptions
     );
 
