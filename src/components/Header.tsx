@@ -108,7 +108,7 @@ const Header = () => {
               ${scrolled ? "text-2xl md:text-3xl" : "text-4xl md:text-5xl"}`}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-indigo-200">
-                MEZIANTOU&apos;S BLOG
+                Mono BLOG
               </span>
             </h1>
 

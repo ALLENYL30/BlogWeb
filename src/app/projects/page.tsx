@@ -4,7 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Projects | MEZIANTOU'S BLOG",
+  title: "My Projects | Allen'S BLOG",
   description: "Explore my portfolio of projects and applications",
 };
 
