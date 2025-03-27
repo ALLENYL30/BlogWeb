@@ -1,6 +1,7 @@
 import BlogPost from "@/components/BlogPost";
 import Sidebar from "@/components/Sidebar";
 import { getPosts, getPostByUrl, PostBriefDto } from "@/lib/api/blogApi";
+import Link from "next/link";
 
 // Extended post type with optional content fields
 type PostWithContent = PostBriefDto & {
@@ -73,17 +74,32 @@ export default async function Home() {
       {/* Main content area (2/3 width on large screens) */}
       <div className="lg:col-span-2">
         {postsWithContent && postsWithContent.length > 0 ? (
-          postsWithContent.map((post) => (
-            <BlogPost
-              key={post.url}
-              title={post.title || "Untitled Post"}
-              date={post.createdAt || new Date().toISOString()}
-              author="Gerald Barré"
-              htmlContent={post.htmlContent}
-              content={post.markdownContent}
-              slug={post.url}
-            />
-          ))
+          <>
+            {postsWithContent.map((post) => (
+              <BlogPost
+                key={post.url}
+                title={post.title || "Untitled Post"}
+                date={post.createdAt || new Date().toISOString()}
+                author="Gerald Barré"
+                htmlContent={post.htmlContent}
+                content={post.markdownContent}
+                slug={post.url}
+              />
+            ))}
+
+            {/* Read more section - simplified to match reference design */}
+            <div className="mt-12 pt-8 border-t border-gray-200 text-center">
+              <p className="text-gray-800 text-lg">
+                Still want more?{" "}
+                <Link
+                  href="/archives"
+                  className="inline-block bg-yellow-200 hover:bg-yellow-300 text-gray-800 font-medium px-1"
+                >
+                  Checkout out my complete list of blog entries!
+                </Link>
+              </p>
+            </div>
+          </>
         ) : (
           <div className="text-center py-8">
             <p>No posts found. Please check your API connection.</p>
