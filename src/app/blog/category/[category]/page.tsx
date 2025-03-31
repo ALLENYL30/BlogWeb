@@ -113,7 +113,7 @@ export default async function CategoryPage({
                 key={post.url}
                 title={post.title}
                 date={post.createdAt}
-                author="Gerald Barré"
+                author="Allen Liu"
                 htmlContent={post.htmlContent}
                 content={post.markdownContent}
                 slug={post.url}

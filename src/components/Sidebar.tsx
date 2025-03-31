@@ -38,7 +38,7 @@ const Sidebar = async ({ type }: SidebarProps) => {
           <div className="mb-4">
             <Image
               src="/author.jpg"
-              alt="Gerald Barré"
+              alt="Allen Liu"
               width={120}
               height={120}
               className="rounded-full mx-auto"

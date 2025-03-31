@@ -1,71 +1,63 @@
 # About Me
 
-Hi, I'm Yuhao!
+My name is Allen Liu. I'm an experienced software developer with 2 years of experience in
+the industry.
 
-I'm a Junior C# Developer who started my professional journey in software development two years ago. My passion for coding began during my computer science studies, where I fell in love with the .NET ecosystem and its capabilities.
+I have a strong background in full-stack development, combining expertise in C#, .NET, and React with a deep
+understanding of software architecture and design patterns. My technical toolkit spans both back-end technologies (SQL
+Server, PowerShell, Docker, Azure) and front-end frameworks (React, Redux, TypeScript), allowing me to build
+comprehensive web solutions from database to user interface. I pride myself on writing clean, maintainable code and
+implementing efficient CI/CD pipelines. Passionate about creating high-quality software that solves real-world problems,
+I continuously explore new technologies and best practices to deliver exceptional results while maintaining a
+collaborative approach to development.
 
-## Professional Experience
+## Professional Craft
 
-Currently, I work at TechFlow Solutions as a Junior Software Developer, where I get to work with:
+I architect and deliver enterprise-grade solutions using:
 
-- ASP.NET Core web applications
-- Azure cloud services
-- SQL Server databases
-- Entity Framework Core
-- Blazor WebAssembly
-
-I've been fortunate to be part of a team that develops and maintains enterprise applications, giving me hands-on experience with real-world software development challenges. My daily work involves writing clean code, implementing new features, and learning from senior developers who mentor me.
+- **ASP.NET Core** (full-stack web development)
+- **React.js** (modern front-end component architecture)
+- **Docker & Kubernetes** (containerization and orchestration)
+- **Azure Cloud Services** (serverless, PaaS, and IaaS implementations)
+- **SQL Server** (performance tuning & complex query optimization)
+- **Entity Framework Core** (data modeling and advanced ORM patterns)
 
 ## Learning Journey
 
-My tech journey started with console applications in C#, but I quickly expanded into:
+Starting with C# console apps, my skillset quickly expanded to include:
 
-- Web development using ASP.NET Core
-- Building RESTful APIs
-- Working with Git and Azure DevOps
-- Understanding CI/CD pipelines
-- Learning cloud architecture on Azure
+- Modern web development with **ASP.NET Core MVC/Web API**
+- Single-page applications using **React, Redux, and TypeScript**
+- RESTful API design using **Restful APIs** and **Swagger/OpenAPI**
+- End-to-end DevOps with **Git**, **Azure DevOps**, and **CI/CD pipelines**
+- Cloud-native architecture patterns on **Azure/AWS**
 
-I'm currently diving deeper into:
+I'm currently diving into the deep end:
 
-- Microservices architecture
-- Docker containerization
-- Advanced Entity Framework concepts
-- Azure Functions and serverless computing
-- Clean Architecture principles
+- Microservices architecture with **service mesh** patterns and **DDD principles**
+- Full-stack .NET/React applications with optimized performance
+- Event-driven architectures using **Azure Service Bus**
+- Advanced **Kubernetes** operators and custom resources
 
-## Community Involvement
+## Community & Innovation
 
-I believe in growing together with the developer community. You can find me:
+I thrive on collaborative growth:
 
-- Contributing to small open-source projects on GitHub
-- Attending local .NET meetups
-- Writing technical articles on my blog
-- Participating in coding workshops
+- Open-source contributor (GitHub repositories focused on .NET utilities)
+- Tech blogger documenting architecture patterns and Azure hacks
+- Regular attendee at .NET Conf and Azure Meetups
+- Workshop facilitator for Blazor hands-on labs
 
-## Side Projects
+## Aspirations
 
-I maintain a few personal projects to experiment with new technologies:
+- Becoming a .NET Solutions Architect specializing in cloud-native systems
+- Mastering distributed systems design and enterprise-scale patterns
+- Bridging the gap between AI innovation and traditional software engineering
+- Elevating developers through open-source mentorship and technical advocacy
 
-- A task management application built with Blazor
-- A weather notification service using Azure Functions
-- Various GitHub repositories where I practice new concepts
+## Let’s Build Tomorrow
 
-## Goals
+- **GitHub:** [ALLENYL30](https://github.com/ALLENYL30)
+- **LinkedIn:** [Yuhao Liu](https://www.linkedin.com/in/yuhao-liu)
 
-As a junior developer, I'm focused on:
-
-- Strengthening my foundation in C# and .NET
-- Learning cloud-native development practices
-- Understanding enterprise software architecture
-- Contributing more to open-source projects
-- Eventually becoming a full-stack .NET developer
-
-## Let's Connect!
-
-I'm always eager to learn and connect with fellow developers. You can find me on:
-
-- GitHub: [ALLENYL30](https://github.com/ALLENYL30)
-- LinkedIn: [Yuhao Liu](https://www.linkedin.com/in/zzyliu74/)
-
-Feel free to reach out if you want to collaborate on projects or just chat about technology!
+Feel free to reach out if you want to collaborate or simply chat about technology!

@@ -80,7 +80,7 @@ export default async function Home() {
                 key={post.url}
                 title={post.title || "Untitled Post"}
                 date={post.createdAt || new Date().toISOString()}
-                author="Gerald Barré"
+                author="Allen Liu"
                 htmlContent={post.htmlContent}
                 content={post.markdownContent}
                 slug={post.url}
