@@ -160,13 +160,27 @@ const Sidebar = async ({ type }: SidebarProps) => {
         <h3 className="text-lg font-semibold mb-4 border-b pb-2">
           Recent Posts
         </h3>
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {posts.length > 0 ? (
             posts.map((post) => (
-              <li key={post.url}>
+              <li key={post.url} className="flex items-start">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 text-blue-500 mt-1 mr-2 flex-shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
                 <Link
                   href={`/blog/${post.url}`}
-                  className="text-gray-700 hover:text-black hover:underline"
+                  className="text-blue-600 hover:text-blue-800 hover:underline line-clamp-2"
                 >
                   {post.title}
                 </Link>
@@ -220,7 +234,6 @@ const Sidebar = async ({ type }: SidebarProps) => {
         <p className="text-sm text-gray-600 mt-2">
           &copy; {new Date().getFullYear()} Allen Liu
         </p>
-
       </div>
     </div>
   );

@@ -42,7 +42,7 @@ const BlogPost = ({
 
   return (
     <article className="mb-10 pb-8 border-b">
-      <h2 className="text-2xl font-bold mb-2">{title}</h2>
+      <h2 className="text-3xl font-bold mb-2">{title}</h2>
       <div className="flex text-gray-600 text-sm mb-4">
         <time>{formattedDate}</time>
         <span className="mx-2">•</span>
@@ -50,11 +50,11 @@ const BlogPost = ({
       </div>
       {htmlContent ? (
         <div
-          className="mb-4 leading-relaxed post-summary prose max-w-none overflow-hidden"
+          className="mb-6 leading-relaxed post-summary prose max-w-none overflow-hidden bg-gradient-to-r from-blue-50 to-gray-50 border border-gray-200 p-6 rounded-lg shadow-sm"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
       ) : content ? (
-        <div className="mb-4 leading-relaxed prose max-w-none overflow-hidden">
+        <div className="mb-6 leading-relaxed prose max-w-none overflow-hidden bg-gradient-to-r from-blue-50 to-gray-50 border border-gray-200 p-6 rounded-lg shadow-sm">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -81,9 +81,23 @@ const BlogPost = ({
       ) : null}
       <Link
         href={`/blog/${slug}`}
-        className="text-gray-700 hover:text-black hover:underline"
+        className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
       >
-        [read more]
+        Read full article
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4 ml-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+          />
+        </svg>
       </Link>
     </article>
   );
