@@ -46,7 +46,6 @@ I thrive on collaborative growth:
 - Open-source contributor (GitHub repositories focused on .NET utilities)
 - Tech blogger documenting architecture patterns and Azure hacks
 - Regular attendee at .NET Conf and Azure Meetups
-- Workshop facilitator for Blazor hands-on labs
 
 ## Aspirations
 
