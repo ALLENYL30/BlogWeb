@@ -42,19 +42,21 @@ const BlogPost = ({
 
   return (
     <article className="mb-10 pb-8 border-b">
-      <h2 className="text-3xl font-bold mb-2">{title}</h2>
-      <div className="flex text-gray-600 text-sm mb-4">
+      <h2 className="text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">
+        {title}
+      </h2>
+      <div className="flex text-gray-600 dark:text-gray-300 text-sm mb-4">
         <time>{formattedDate}</time>
         <span className="mx-2">•</span>
         <span>{author}</span>
       </div>
       {htmlContent ? (
         <div
-          className="mb-6 leading-relaxed post-summary prose max-w-none overflow-hidden bg-gradient-to-r from-blue-50 to-gray-50 border border-gray-200 p-6 rounded-lg shadow-sm"
+          className="mb-6 leading-relaxed post-summary prose max-w-none overflow-hidden bg-gradient-to-r from-blue-50 to-gray-50 dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-gray-700 p-6 rounded-lg shadow-sm"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
       ) : content ? (
-        <div className="mb-6 leading-relaxed prose max-w-none overflow-hidden bg-gradient-to-r from-blue-50 to-gray-50 border border-gray-200 p-6 rounded-lg shadow-sm">
+        <div className="mb-6 leading-relaxed prose dark:prose-invert max-w-none overflow-hidden bg-gradient-to-r from-blue-50 to-gray-50 dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-gray-700 p-6 rounded-lg shadow-sm">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -81,7 +83,7 @@ const BlogPost = ({
       ) : null}
       <Link
         href={`/blog/${slug}`}
-        className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+        className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
       >
         Read full article
         <svg
