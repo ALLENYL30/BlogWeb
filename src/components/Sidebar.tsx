@@ -32,7 +32,7 @@ const Sidebar = async ({ type }: SidebarProps) => {
   return (
     <div className="space-y-8">
       {/* Author Card Section */}
-      <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
         <div className="flex flex-col items-center">
           {/* Profile Image */}
           <div className="mb-4">
@@ -45,7 +45,9 @@ const Sidebar = async ({ type }: SidebarProps) => {
               priority
             />
           </div>
-          <h2 className="text-xl font-bold mb-1">Allen Liu</h2>
+          <h2 className="text-xl font-bold mb-1 text-gray-900 dark:text-gray-100">
+            Allen Liu
+          </h2>
           {/*<p className="text-gray-600 text-sm text-center mb-4">*/}
           {/*  aka. meziantou*/}
           {/*</p>*/}
@@ -54,7 +56,7 @@ const Sidebar = async ({ type }: SidebarProps) => {
               href="https://github.com/ALLENYL30"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-black"
+              className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +88,7 @@ const Sidebar = async ({ type }: SidebarProps) => {
               href="https://www.linkedin.com/in/zzyliu74/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-black"
+              className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,8 +105,8 @@ const Sidebar = async ({ type }: SidebarProps) => {
       </div>
 
       {/* Quick Links Section */}
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-4 border-b pb-2">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold mb-4 border-b pb-2 dark:border-gray-700 text-gray-900 dark:text-gray-100">
           Quick Links
         </h3>
         <ul className="space-y-2">
@@ -112,8 +114,10 @@ const Sidebar = async ({ type }: SidebarProps) => {
             <Link
               href="/"
               className={`${
-                type === "home" ? "font-semibold text-black" : "text-gray-700"
-              } hover:text-black hover:underline`}
+                type === "home"
+                  ? "font-semibold text-black dark:text-white"
+                  : "text-gray-700 dark:text-gray-300"
+              } hover:text-black dark:hover:text-white hover:underline`}
             >
               Home
             </Link>
@@ -123,9 +127,9 @@ const Sidebar = async ({ type }: SidebarProps) => {
               href="/archives"
               className={`${
                 type === "archives"
-                  ? "font-semibold text-black"
-                  : "text-gray-700"
-              } hover:text-black hover:underline`}
+                  ? "font-semibold text-black dark:text-white"
+                  : "text-gray-700 dark:text-gray-300"
+              } hover:text-black dark:hover:text-white hover:underline`}
             >
               Archives
             </Link>
@@ -135,9 +139,9 @@ const Sidebar = async ({ type }: SidebarProps) => {
               href="/projects"
               className={`${
                 type === "projects"
-                  ? "font-semibold text-black"
-                  : "text-gray-700"
-              } hover:text-black hover:underline`}
+                  ? "font-semibold text-black dark:text-white"
+                  : "text-gray-700 dark:text-gray-300"
+              } hover:text-black dark:hover:text-white hover:underline`}
             >
               Projects
             </Link>
@@ -146,8 +150,10 @@ const Sidebar = async ({ type }: SidebarProps) => {
             <Link
               href="/about"
               className={`${
-                type === "about" ? "font-semibold text-black" : "text-gray-700"
-              } hover:text-black hover:underline`}
+                type === "about"
+                  ? "font-semibold text-black dark:text-white"
+                  : "text-gray-700 dark:text-gray-300"
+              } hover:text-black dark:hover:text-white hover:underline`}
             >
               About Me
             </Link>
@@ -156,8 +162,8 @@ const Sidebar = async ({ type }: SidebarProps) => {
       </div>
 
       {/* Recent Posts Section */}
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-4 border-b pb-2">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold mb-4 border-b pb-2 dark:border-gray-700 text-gray-900 dark:text-gray-100">
           Recent Posts
         </h3>
         <ul className="space-y-3">
@@ -166,7 +172,7 @@ const Sidebar = async ({ type }: SidebarProps) => {
               <li key={post.url} className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-blue-500 mt-1 mr-2 flex-shrink-0"
+                  className="h-4 w-4 text-blue-500 dark:text-blue-400 mt-1 mr-2 flex-shrink-0"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -180,58 +186,69 @@ const Sidebar = async ({ type }: SidebarProps) => {
                 </svg>
                 <Link
                   href={`/blog/${post.url}`}
-                  className="text-blue-600 hover:text-blue-800 hover:underline line-clamp-2"
+                  className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 hover:underline line-clamp-2"
                 >
                   {post.title}
                 </Link>
               </li>
             ))
           ) : (
-            <li className="text-gray-600">No posts available</li>
+            <li className="text-gray-600 dark:text-gray-400">
+              No posts available
+            </li>
           )}
         </ul>
       </div>
 
       {/* Technologies Section */}
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-4 border-b pb-2">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold mb-4 border-b pb-2 dark:border-gray-700 text-gray-900 dark:text-gray-100">
           Technologies
         </h3>
         <div className="flex flex-wrap gap-2">
-          {[
-            "C#",
-            ".NET",
-            "ASP.NET Core",
-            "SQL",
-            "Entity Framework",
-            "Azure",
-            "Git",
-            "Blazor",
-          ].map((tech) => (
-            <span
-              key={tech}
-              className="bg-gray-100 text-gray-800 px-2 py-1 text-xs rounded-md"
-            >
-              {tech}
-            </span>
-          ))}
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            C#
+          </span>
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            .NET
+          </span>
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            ASP.NET Core
+          </span>
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            Blazor
+          </span>
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            EF Core
+          </span>
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            WPF
+          </span>
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            TypeScript
+          </span>
+          <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md">
+            React
+          </span>
         </div>
       </div>
 
       {/* Contact Section */}
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-lg font-semibold mb-4 border-b pb-2">Contact</h3>
-        <p className="text-sm text-gray-600 mb-2">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h3 className="text-lg font-semibold mb-4 border-b pb-2 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+          Contact
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
           Feel free to reach out if you&apos;d like to collaborate or have any
           questions.
         </p>
         <a
           href="mailto:zzyliu71@gmail.com"
-          className="text-blue-600 hover:underline inline-block mt-2"
+          className="text-blue-600 dark:text-blue-400 hover:underline dark:hover:text-blue-300 inline-block mt-2"
         >
           zzyliu71@gmail.com
         </a>
-        <p className="text-sm text-gray-600 mt-2">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
           &copy; {new Date().getFullYear()} Allen Liu
         </p>
       </div>

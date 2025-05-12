@@ -16,7 +16,7 @@ export default async function ProjectsPage() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
       {/* Main content */}
       <div className="lg:col-span-2">
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
           <MarkdownRenderer content={content} className="projects-content" />
         </div>
       </div>

@@ -12,7 +12,9 @@ const MarkdownRenderer = ({
   className = "",
 }: MarkdownRendererProps) => {
   return (
-    <div className={`prose max-w-none overflow-hidden ${className}`}>
+    <div
+      className={`prose dark:prose-invert max-w-none overflow-hidden ${className}`}
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{

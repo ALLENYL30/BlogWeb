@@ -52,10 +52,12 @@ export default async function BlogPostPage({
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
       {/* Main content area (2/3 width on large screens) */}
       <div className="lg:col-span-2">
-        <article className="bg-white p-6 rounded-lg shadow-md">
+        <article className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
           <header className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
-            <div className="text-gray-600 text-sm">
+            <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">
+              {post.title}
+            </h1>
+            <div className="text-gray-600 dark:text-gray-300 text-sm">
               <time dateTime={post.createdAt}>
                 {new Date(post.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -68,7 +70,7 @@ export default async function BlogPostPage({
                   {" in "}
                   <Link
                     href={`/blog/category/${post.category.alias}`}
-                    className="text-blue-600 hover:underline"
+                    className="text-blue-600 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
                   >
                     {post.category.name}
                   </Link>
@@ -77,11 +79,11 @@ export default async function BlogPostPage({
             </div>
           </header>
 
-          <div className="prose max-w-none overflow-hidden">
+          <div className="prose dark:prose-invert max-w-none overflow-hidden">
             {post.html ? (
               <div
                 dangerouslySetInnerHTML={{ __html: post.html }}
-                className="prose overflow-hidden"
+                className="prose dark:prose-invert overflow-hidden"
               />
             ) : post.markdown ? (
               <ReactMarkdown
@@ -112,14 +114,16 @@ export default async function BlogPostPage({
           </div>
 
           {post.tags && post.tags.length > 0 && (
-            <div className="mt-8 pt-4 border-t border-gray-200">
-              <h3 className="text-sm uppercase text-gray-500 mb-2">Tags:</h3>
+            <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 className="text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">
+                Tags:
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <Link
                     key={tag.alias}
                     href={`/blog/tag/${tag.alias}`}
-                    className="bg-gray-100 text-gray-800 px-2 py-1 text-sm rounded-md hover:bg-gray-200"
+                    className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md hover:bg-gray-200 dark:hover:bg-gray-600"
                   >
                     {tag.name}
                   </Link>
