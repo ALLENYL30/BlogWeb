@@ -248,9 +248,6 @@ const Sidebar = async ({ type }: SidebarProps) => {
         >
           zzyliu71@gmail.com
         </a>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-          &copy; {new Date().getFullYear()} Allen Liu
-        </p>
       </div>
     </div>
   );

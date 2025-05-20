@@ -1,62 +1,49 @@
 # About Me
 
-My name is Allen Liu. I'm an experienced software developer with 2 years of experience in
-the industry.
+I'm Allen Liu, a self-motivated and dedicated Full-Stack Software Developer focused on delivering high-quality, enterprise-grade web applications. My experience spans the design and development of secure RESTful APIs, optimizing database performance, and establishing efficient CI/CD pipelines, particularly with Azure and Docker. I am proficient in C#, .NET Core, SQL Server, MongoDB, and modern front-end frameworks like React, Next.js, and TypeScript, always committed to writing clean, maintainable code and ensuring on-time project delivery within dynamic agile environments.
 
-I have a strong background in full-stack development, combining expertise in C#, .NET, and React with a deep
-understanding of software architecture and design patterns. My technical toolkit spans both back-end technologies (SQL
-Server, PowerShell, Docker, Azure) and front-end frameworks (React, Redux, TypeScript), allowing me to build
-comprehensive web solutions from database to user interface. I pride myself on writing clean, maintainable code and
-implementing efficient CI/CD pipelines. Passionate about creating high-quality software that solves real-world problems,
-I continuously explore new technologies and best practices to deliver exceptional results while maintaining a
-collaborative approach to development.
+## Core Technical Proficiencies & Experience
 
-## Professional Craft
+My practical experience involves architecting and delivering solutions leveraging:
 
-I architect and deliver enterprise-grade solutions using:
+- **Back-End Development:**
+  - **C# & .NET Ecosystem:** .NET Core (MVC/Web API), Entity Framework Core, ABP Framework, LINQ, SignalR.
+  - **Database Technologies:** MSSQL Server , MongoDB , Redis , MySql.
+- **Front-End Development:**
+  - **JavaScript/TypeScript Frameworks:** React.js, Next.js, React Native.
+  - **UI/UX:** Material UI, TailwindCSS.
+- **DevOps, Cloud & Testing:**
+  - **Cloud Platforms:** Azure , AWS .
+  - **Containerization & Orchestration:** Docker, Kubernetes (AKS).
+  - **CI/CD Pipelines:** Azure DevOps, Jenkins, GitLab, Terraform, GitHub Actions.
+  - **Testing:** xUnit, Moq.
+  - **Version Control & Tools:** Git, Jira.
 
-- **ASP.NET Core** (full-stack web development)
-- **React.js** (modern front-end component architecture)
-- **Docker & Kubernetes** (containerization and orchestration)
-- **Azure Cloud Services** (serverless, PaaS, and IaaS implementations)
-- **SQL Server** (performance tuning & complex query optimization)
-- **Entity Framework Core** (data modeling and advanced ORM patterns)
+## Current Learning & Future Focus
 
-## Learning Journey
+Building on this foundation, I am actively deepening my expertise in:
 
-Starting with C# console apps, my skillset quickly expanded to include:
+- Advanced **microservices architecture**, incorporating service mesh patterns and Domain-Driven Design (DDD) principles.
+- Optimizing performance in complex **full-stack .NET/React applications**.
+- Designing and implementing **event-driven architectures**, potentially using tools like Azure Service Bus.
+- Advanced **Kubernetes** operations and custom resource development.
 
-- Modern web development with **ASP.NET Core MVC/Web API**
-- Single-page applications using **React, Redux, and TypeScript**
-- RESTful API design using **Restful APIs** and **Swagger/OpenAPI**
-- End-to-end DevOps with **Git**, **Azure DevOps**, and **CI/CD pipelines**
-- Cloud-native architecture patterns on **Azure/AWS**
+## Community Engagement & Aspirations
 
-I'm currently diving into the deep end:
+I believe in collaborative growth and actively engage by:
 
-- Microservices architecture with **service mesh** patterns and **DDD principles**
-- Full-stack .NET/React applications with optimized performance
-- Event-driven architectures using **Azure Service Bus**
-- Advanced **Kubernetes** operators and custom resources
+- Contributing to **open-source** (GitHub repositories focused on .NET utilities).
+- Documenting architecture patterns and cloud solutions on my **tech blog (allendev.net)**.
+- Staying current by attending industry events like **.NET Conf and Azure Meetups**.
 
-## Community & Innovation
-
-I thrive on collaborative growth:
-
-- Open-source contributor (GitHub repositories focused on .NET utilities)
-- Tech blogger documenting architecture patterns and Azure hacks
-- Regular attendee at .NET Conf and Azure Meetups
-
-## Aspirations
-
-- Becoming a .NET Solutions Architect specializing in cloud-native systems
-- Mastering distributed systems design and enterprise-scale patterns
-- Bridging the gap between AI innovation and traditional software engineering
-- Elevating developers through open-source mentorship and technical advocacy
+My aspirations are to become a **.NET Solutions Architect** specializing in cloud-native, distributed systems, to master enterprise-scale design patterns, innovate at the intersection of AI and software engineering, and empower fellow developers through mentorship and advocacy.
 
 ## Let’s Build Tomorrow
 
-- **GitHub:** [ALLENYL30](https://github.com/ALLENYL30)
-- **LinkedIn:** [Yuhao Liu](https://www.linkedin.com/in/yuhao-liu)
+I'm always excited to connect, collaborate on new projects, or simply discuss the future of technology.
 
-Feel free to reach out if you want to collaborate or simply chat about technology!
+- **GitHub:** [ALLENYL30](https://github.com/ALLENYL30)
+- **LinkedIn:** [Allen Liu](https://www.linkedin.com/in/zzyliu74/)
+- **Resume:** [allencv.net](http://allencv.net)
+
+---
