@@ -68,12 +68,9 @@ export default async function BlogPostPage({
               {post.category && (
                 <>
                   {" in "}
-                  <Link
-                    href={`/blog/category/${post.category.alias}`}
-                    className="text-blue-600 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
-                  >
+                  <span className="text-blue-600 hover:underline dark:text-blue-400 dark:hover:text-blue-300">
                     {post.category.name}
-                  </Link>
+                  </span>
                 </>
               )}
             </div>
@@ -120,13 +117,12 @@ export default async function BlogPostPage({
               </h3>
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <Link
+                  <span
                     key={tag.alias}
-                    href={`/blog/tag/${tag.alias}`}
                     className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 text-sm rounded-md hover:bg-gray-200 dark:hover:bg-gray-600"
                   >
                     {tag.name}
-                  </Link>
+                  </span>
                 ))}
               </div>
             </div>
