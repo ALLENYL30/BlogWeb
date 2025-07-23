@@ -1,5 +1,4 @@
 import Sidebar from "@/components/Sidebar";
-import Link from "next/link";
 import { getPostByUrl } from "@/lib/api/blogApi";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
